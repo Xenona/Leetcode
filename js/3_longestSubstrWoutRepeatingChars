@@ -1,0 +1,55 @@
+'use strict'
+
+/*Given a string s, find the length 
+of the longest substring without 
+repeating characters.*/
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+    let charSet = new Set();
+    let i = j = len = 0;
+ 
+    while (i < s.length) {
+        if (charSet.has(s[i])) {
+
+            if (charSet.size > len) {
+                len = charSet.size;
+            };
+
+            charSet.delete(s[j]);
+            j++;
+        } else { 
+
+            charSet.add(s[i]);
+            i++;
+        }; 
+    };
+    if (charSet.size > len) {
+        return charSet.size;
+    };
+    return len; 
+};
+
+
+
+// var lengthOfLongestSubstring = function(s) {
+//     let charMap = new Map();
+//     let len = 0;
+
+//     for (let i = 0; i < s.length; i++) {
+//         if (charMap.has(s[i])) {
+//             i = charMap.get(s[i]) + 1;
+//             charMap.clear();
+//         };
+//         charMap.set(s[i], i);
+//         if (charMap.size > len) {
+//             len = charMap.size;
+//         };
+//     };
+//     return len;
+// };
+
+ 
